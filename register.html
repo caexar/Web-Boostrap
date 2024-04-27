@@ -52,35 +52,37 @@
                         <h2 class="fw-bold text-center py-5">Registrate ahora!</h2>
 
                         <div>
-                            <div class="mb-4">
-                                <label for="nombre" class="form-label"> nombre</label>
-                                <input type="text" class="form-control" name="nombre">
-                            </div>
-                            <div class="mb-4">
-                                <label for="apellidos" class="form-label"> apellidos</label>
-                                <input type="text" class="form-control" name="apellidos">
-                            </div>
-                            <div class="mb-4">
-                                <label for="numero" class="form-label"> numero de celular</label>
-                                <input type="number" class="form-control" name="celular">
-                            </div>
+                            <form id="registrationForm">
+                                <div class="mb-4">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="apellidos" class="form-label">Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" name="apellidos">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="numero" class="form-label">Número de celular</label>
+                                    <input type="number" class="form-control" id="celular" name="celular">
+                                </div>
 
-                            <div class="mb-4">
-                                <label for="email" class="form-label">correo</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
+                                <div class="mb-4">
+                                    <label for="email" class="form-label">Correo</label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                </div>
 
-                            <div class="mb-4">
-                                <label for="password" class="form-label">password</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <div class="mb-4">
-                                <label for="password" class="form-label"> repetir password</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <a href="index.html" class="d-grid">
-                                <button class="btn btn-primary">Registrarse</button>
-                            </a> 
+                                <div class="mb-4">
+                                    <label for="password" class="form-label">password</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="password" class="form-label"> repetir password</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <a href="index.html" class="d-grid">
+                                    <button class="btn btn-primary">Registrarse</button>
+                                </a> 
+                            </form>
                         </div>
 
                         <!-- login con redes sociales-->
@@ -114,17 +116,35 @@
                             </div>
 
                         </div>
-
-
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+        
+            var user = {
+                nombre: document.getElementById("nombre").value,
+                apellidos: document.getElementById("apellidos").value,
+                celular: document.getElementById("celular").value,
+                email: document.getElementById("email").value,
+            };
+        
+            // Guardar en localStorage
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+        
+            // Redireccionar a tablaUsers.html
+            window.location.href = "tablaUsers.html";
+        });
+        </script>
+        
 </body>
 <footer>
     <div class="container-fluid">
